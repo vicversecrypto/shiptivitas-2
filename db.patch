@@ -20,3 +20,54 @@
   {"id":19,"name":"Hodkiewicz-Hayes", "description": "Programmable Systematic Securedline", "status": "backlog", "priority": 10},
   {"id":20,"name":"Murphy, Lang and Ferry", "description": "Organized Explicit Access", "status": "backlog", "priority": 11}
 ]
+git clone <URL of your forked repository>
+npm install express
+npm install mongoose
+npm install nodemailer
+git add .
+git commit -m "Integrated frontend with NodeJS backend"
+git push origin master
+git clone https://github.com/insidesherpa/shiptivitas-2.git
+cd shiptivitas-2
+npm install
+app.put('/task/:id', (req, res) => {
+    // extract task ID and new status from request
+    const taskId = req.params.id;
+    const { status } = req.body;
+
+    // update the task in the database
+    // ...
+
+    res.json({ success: true });
+});
+app.put('/task/:id/position', (req, res) => {
+    // extract task ID and new position from request
+    const taskId = req.params.id;
+    const { position } = req.body;
+
+    // update the task's position in the database
+    // ...
+
+    res.json({ success: true });
+});
+// when a card is moved to a new lane
+fetch(`/task/${taskId}`, {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        status: newStatus,
+    }),
+});
+
+// when a card is rearranged within the same lane
+fetch(`/task/${taskId}/position`, {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        position: newPosition,
+    }),
+});
